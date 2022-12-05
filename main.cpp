@@ -10,7 +10,6 @@ int main() {
     my_hash_table.Insert("Artem", 123456);
     my_hash_table.Insert("Konstantin", -18);
     my_hash_table.Insert("Mikhail", 10);
-    my_hash_table.Insert("Mikhail", 23);
     my_hash_table.Output();
     std::cout << std::endl;
 

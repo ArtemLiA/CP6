@@ -22,8 +22,8 @@ public:
     TValue Search(const TKey& key) const;
     void Output() const;
     void Delete(TValue element);
-    const TValue operator[](TKey& key); //table[key]
     size_t hash_function(const TKey & key) const;
+    TValue& operator[](TKey& key); //table[key]
 };
 
 //Hash function which can be overloaded for any type
@@ -66,7 +66,7 @@ template<class TKey, class TValue>
 void HashTable<TKey, TValue>::Insert(const TKey &key_val, TValue el_value) {
     size_t idx = this->hash_function(key_val);
     for (auto pairs: table[idx]){
-        if (pairs.first == key_val && pairs.second == el_value){
+        if (pairs.first == key_val){
             return;
         }
     }
@@ -107,6 +107,20 @@ void HashTable<TKey, TValue>::Delete(TValue element){
             table[idx].pop_back();
         }
     }
+}
+
+template<class TKey, class TValue>
+TValue& HashTable<TKey, TValue>::operator[](TKey &key) {
+    size_t idx = this->hash_function(key);
+    if (table[idx].empty()){
+        throw;
+    }
+    for (auto pair: table[idx]){
+        if (pair.first == key){
+            return pair.second;
+        }
+    }
+    throw;
 }
 
 

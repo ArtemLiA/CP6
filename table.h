@@ -7,6 +7,7 @@
 #include <iostream>
 #include <deque>
 #include <list>
+#include <iterator>
 
 template<class TKey, class TValue>
 class HashTable{
@@ -92,5 +93,21 @@ void HashTable<TKey, TValue>:: Output() const{
         }
     }
 };
+
+template<class TKey, class TValue>
+void HashTable<TKey, TValue>::Delete(TValue element){
+    for (size_t idx = 0; idx < size_; idx++){
+        auto iter = table[idx].begin();
+        for (; iter != table[idx].end(); iter++) {
+            if ((*iter).second == element){
+                iter = table[idx].erase(iter);
+            }
+        }
+        if (table[idx].back().second == element){
+            table[idx].pop_back();
+        }
+    }
+}
+
 
 #endif //CP6_TABLE_H

@@ -109,12 +109,9 @@ void HashTable<TKey, TValue>::Delete(TValue element){
     }
 }
 
-template<class TKey, class TValue>
-TValue& HashTable<TKey, TValue>::operator[](TKey &key) {
+
+template<class TKey, class TValue> TValue& HashTable<TKey, TValue>::operator[](TKey& key){
     size_t idx = this->hash_function(key);
-    if (table[idx].empty()){
-        throw;
-    }
     for (auto pair: table[idx]){
         if (pair.first == key){
             return pair.second;
@@ -122,6 +119,5 @@ TValue& HashTable<TKey, TValue>::operator[](TKey &key) {
     }
     throw;
 }
-
 
 #endif //CP6_TABLE_H

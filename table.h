@@ -84,4 +84,13 @@ TValue HashTable<TKey, TValue>::Search(const TKey &key) const {
     throw;
 }
 
+template<class TKey, class TValue>
+void HashTable<TKey, TValue>:: Output() const{
+    for (size_t idx = 0; idx < size_; idx++){
+        for (auto pairs: table[idx]){
+            std::cout << pairs.first << " " << pairs.second << std::endl;
+        }
+    }
+};
+
 #endif //CP6_TABLE_H

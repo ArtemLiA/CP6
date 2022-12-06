@@ -18,5 +18,6 @@ int main() {
     my_hash_table.Delete(23);
     my_hash_table.Delete(10);
     my_hash_table.Output();
+    std::cout << my_hash_table["Nikolay"];
     return 0;
 }

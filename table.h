@@ -23,7 +23,7 @@ public:
     void Output() const;
     void Delete(TValue element);
     size_t hash_function(const TKey & key) const;
-    TValue& operator[](TKey& key); //table[key]
+    TValue operator[](const TKey& key); //table[key]
 };
 
 //Hash function which can be overloaded for any type
@@ -110,7 +110,7 @@ void HashTable<TKey, TValue>::Delete(TValue element){
 }
 
 
-template<class TKey, class TValue> TValue& HashTable<TKey, TValue>::operator[](TKey& key){
+template<class TKey, class TValue> TValue HashTable<TKey, TValue>::operator[](const TKey& key){
     size_t idx = this->hash_function(key);
     for (auto pair: table[idx]){
         if (pair.first == key){
